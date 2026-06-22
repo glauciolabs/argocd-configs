@@ -17,12 +17,24 @@ spec:
     spec:
       containers:
         - name: cloudflared
-          image: cloudflare/cloudflared:2026.5.1
+          image: cloudflare/cloudflared:2026.3.0
+          imagePullPolicy: Always
           args:
             - tunnel
-            - --config
-            - /etc/cloudflared/config/config.yaml
+            - --no-autoupdate
+            - --metrics
+            - 0.0.0.0:2000
             - run
+            - --token
+            - $(CLOUDFLARE_TOKEN)
+            - --protocol=http2
+            - --no-tls-verify
+          env:
+            - name: CLOUDFLARE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflared-credentials
+                  key: token
           resources:
             limits:
               cpu: 500m
@@ -30,29 +42,9 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-          volumeMounts:
-            - name: config
-              mountPath: /etc/cloudflared/config
-              readOnly: true
-            - name: creds
-              mountPath: /etc/cloudflared/creds
-              readOnly: true
           livenessProbe:
             httpGet:
               path: /ready
               port: 2000
             initialDelaySeconds: 10
             periodSeconds: 10
-      volumes:
-        - name: config
-          configMap:
-            name: cloudflared-config
-            items:
-              - key: config.yaml
-                path: config.yaml
-        - name: creds
-          secret:
-            secretName: cloudflare-tunnel-credentials
-            items:
-              - key: credentials.json
-                path: credentials.json
