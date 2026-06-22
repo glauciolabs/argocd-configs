@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Componentes de infraestrutura básica do cluster K3s HA (Produção)"
   sourceRepos:
-    - "git@github.com:glauciolabs/argocd-configs.git"
+    - "*"
   destinations:
     - namespace: default
       server: https://kubernetes.default.svc
