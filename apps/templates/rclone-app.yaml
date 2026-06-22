@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/glauciolabs/rclone-app.git"
+    repoURL: "git@github.com:glauciolabs/rclone-app.git"
     targetRevision: HEAD
     path: k8s
   destination:

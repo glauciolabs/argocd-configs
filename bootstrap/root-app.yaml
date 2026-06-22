@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/glauciolabs/argocd-configs.git"
+    repoURL: "git@github.com:glauciolabs/argocd-configs.git"
     targetRevision: HEAD
     path: infrastructure
   destination:
