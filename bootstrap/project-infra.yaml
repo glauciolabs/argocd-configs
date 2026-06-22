@@ -8,6 +8,8 @@ spec:
   sourceRepos:
     - "git@github.com:glauciolabs/argocd-configs.git"
   destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
     - namespace: kube-system
       server: https://kubernetes.default.svc
     - namespace: metallb-system
