@@ -1,0 +1,6 @@
+apiVersion: v2
+name: apps
+description: "Parent Helm Chart for user applications (Jellyfin, Rclone, etc.)"
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

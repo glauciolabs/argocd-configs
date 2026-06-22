@@ -1,0 +1,26 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: gcs-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.20.1.200-10.20.1.250
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: gww-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.30.1.200-10.30.1.250
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: h89-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.10.1.200-10.10.1.250

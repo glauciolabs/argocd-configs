@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: contour
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+  source:
+    chart: contour
+    repoURL: "https://projectcontour.io/contour"
+    targetRevision: "17.2.2"
+    helm:
+      values: |
+        contour:
+          replicas: {{ .Values.contour.contour.replicas }}
+        envoy:
+          service:
+            type: {{ .Values.contour.envoy.service.type | quote }}
+            nodePorts:
+              http: {{ .Values.contour.envoy.service.nodePorts.http }}
+              https: {{ .Values.contour.envoy.service.nodePorts.https }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: projectcontour
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
