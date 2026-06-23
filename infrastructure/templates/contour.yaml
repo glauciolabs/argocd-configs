@@ -9,13 +9,14 @@ spec:
   project: infrastructure
   source:
     chart: contour
-    repoURL: "https://projectcontour.io/contour"
-    targetRevision: "17.2.2"
+    repoURL: "https://projectcontour.github.io/helm-charts/"
+    targetRevision: "0.6.0"
     helm:
       values: |
         contour:
-          replicas: {{ .Values.contour.contour.replicas }}
+          replicaCount: {{ .Values.contour.contour.replicas }}
         envoy:
+          replicaCount: {{ .Values.contour.contour.replicas }}
           service:
             type: {{ .Values.contour.envoy.service.type | quote }}
             nodePorts:
@@ -30,3 +31,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+

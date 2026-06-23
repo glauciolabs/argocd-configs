@@ -1,0 +1,45 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: argocd-server
+  namespace: argocd
+  annotations:
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/target: "ddb0b78f-c9e7-43f8-887a-acf61e79133c.cfargotunnel.com"
+spec:
+  virtualhost:
+    fqdn: argocd.glauciolabs.work
+  routes:
+    # Route for gRPC (CLI usage)
+    - conditions:
+        - prefix: /
+        - header:
+            name: Content-Type
+            contains: application/grpc
+      services:
+        - name: argocd-server
+          port: 80
+          protocol: h2c
+      timeoutPolicy:
+        response: 1h
+        idle: 600s
+        idleConnection: 600s
+
+    # Route for Web UI
+    - conditions:
+        - prefix: /
+      services:
+        - name: argocd-server
+          port: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cmd-params-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cmd-params-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  server.insecure: "true"
+  redis.server: "argocd-redis-ha-haproxy:6379"
