@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  accounts.admin: login
+  accounts.admin.enabled: "false"
+  accounts.devops: apiKey
+  accounts.devops.enabled: "true"
+  policy.csv: |
+    p, role:devops, applications, *, *, allow
+    p, role:devops, clusters, get, *, allow
+    p, role:devops, repositories, get, *, allow
+    p, role:devops, repositories, create, *, allow
+    p, role:devops, repositories, update, *, deny
+    p, role:devops, repositories, delete, *, deny
+    p, role:devops, gpgkeys, get, *, allow
+    p, role:devops, applications, sync, apps/*, allow
+    p, role:devops, projects, get, *, allow
+    p, role:devops, projects, create, *, allow
+    p, role:devops, projects, update, *, allow
+    g, devops, role:devops
+    #g, gcampos, role:admin
+    #g, "641997a3-dcd6-439b-a226-1796fdf2d36b", role:org-admin
+    g, "pOVnN-TuvRMVVmTmnk94TBK4ADzpo13HMraHxDr5Y7s", role:admin
+  policy.default: role:''
+  scopes: '[email]'
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-rbac-cm
+  namespace: argocd
