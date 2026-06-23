@@ -34,14 +34,6 @@ contour:
       nodePorts:
         http: 30080
         https: 30443
-      externalIPs:
-        - 100.96.0.1
-        - 100.96.0.14
-        - 100.96.0.16
-        - 100.96.0.6
-        - 100.96.0.15
-        - 100.96.0.17
-        - 100.96.0.23
 
 certManager:
   installCRDs: true
