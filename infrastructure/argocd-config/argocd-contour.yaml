@@ -1,14 +1,29 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-cert
+  namespace: argocd
+spec:
+  secretName: argocd-cert-secret
+  issuerRef:
+    name: letsencrypt-cloudflare
+    kind: ClusterIssuer
+  dnsNames:
+    - argocd.glauciolabs.work
+---
 apiVersion: projectcontour.io/v1
 kind: HTTPProxy
 metadata:
   name: argocd-server
   namespace: argocd
   annotations:
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-    external-dns.alpha.kubernetes.io/target: "ddb0b78f-c9e7-43f8-887a-acf61e79133c.cfargotunnel.com"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    external-dns.alpha.kubernetes.io/target: "146.235.33.238,163.176.220.147,136.248.74.107"
 spec:
   virtualhost:
     fqdn: argocd.glauciolabs.work
+    tls:
+      secretName: argocd-cert-secret
   routes:
     # Route for gRPC (CLI usage)
     - conditions:
