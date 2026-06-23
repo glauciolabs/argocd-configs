@@ -49,6 +49,7 @@ externalDns:
   sources:
     - service
     - ingress
+    - contour-httpproxy
 
 cloudflared:
   replicas: 2
