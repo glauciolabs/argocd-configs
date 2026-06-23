@@ -44,7 +44,7 @@ spec:
               memory: 128Mi
           livenessProbe:
             httpGet:
-              path: /ready
+              path: /metrics
               port: 2000
             initialDelaySeconds: 10
             periodSeconds: 10
