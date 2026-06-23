@@ -1,0 +1,16 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: docker-registry-token
+  namespace: default
+spec:
+  encryptedData:
+    token: AgBUnnMNuxZeNESu1ZXGu/i5yHOEdo1UU/Da+T8VaHz2kXqGDTAQld1Va+UQSPehSRE/iOR/DdZgg+RqTF4YB2VpbYB+hwU6EP6CfT0vFZRmQj+lGwUXbAwV0tqQ0dvknOhOZ8CTR37mVChnBq0UkKIqfiipaaV+c5tHnaSkyh8946yL4pLo2iD+6pPLYIobQjAEPXYhGCmPBk+pakHSkF7bTligZ8aiXcUpbLTnZP2HMtV3GQ3M3mTFL31o7WSFtN478nFVEflFAQgj3Pl5Pv5xOFpnmPWExLUgrukOZWWCQJsQXp7Lmf1BUnBSrph/+DNx4ErdgivZcZ9cNu6DuVLcZwEHWyAitNg0VO4amd3IqVEl5oGABp5jXf9xTOpsXk3nHXaBsqKIkSb6VYpfI4Pg9Q2WXangyhy243yrR7LPTMyao7fNW0MdDD0xo1Vquz2ZoBcxGDBAo3G4rDz1hhSqdJn9q6NZFmQeWeu+9SSP8V6YF5Czg9sevaSOXQQHyeRd5OvLh9b9pua6igW+mAqGlaw0+64rZz1Me0gWK69M4IlGY+NfFnFSyLyowOW+OLC9kIhj5TqfGmACTIE59EmoT0dU0sOHAQ1f2Sb7UOCnxbi3sBPZJ42aCQsDgmZ2bjBAE7oFgjYVKaoV9PLBfUv0nhf/Nw/CXwf8s6gl5+kGq61GpsudoHfg1a83T6QkUfIzG4icMFgHqVbH8YJeT6KGbgFxj5dczxY/yQgaF0RkIb/Oie0=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: docker-registry-token
+      namespace: default
+    type: Opaque
