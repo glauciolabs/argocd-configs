@@ -19,6 +19,10 @@ spec:
           replicaCount: {{ .Values.contour.contour.replicas }}
           service:
             type: {{ .Values.contour.envoy.service.type | quote }}
+            externalIPs:
+              {{- range .Values.contour.envoy.service.externalIPs }}
+              - {{ . | quote }}
+              {{- end }}
             nodePorts:
               http: {{ .Values.contour.envoy.service.nodePorts.http }}
               https: {{ .Values.contour.envoy.service.nodePorts.https }}
