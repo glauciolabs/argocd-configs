@@ -9,7 +9,7 @@ contour:
     replicas: 2
   envoy:
     service:
-      type: LoadBalancer
+      type: NodePort
       # Set specific nodePorts for OCI NLB target integration
       nodePorts:
         http: 30080
