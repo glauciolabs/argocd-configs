@@ -3,26 +3,6 @@
 nfsCsi:
   kubeletDir: /var/lib/kubelet
 
-metallb:
-  # MetalLB operator/controller values
-  controller:
-    image:
-      repository: quay.io/metallb/controller
-  speaker:
-    image:
-      repository: quay.io/metallb/speaker
-
-# IP Pools configurations
-ipPools:
-  gcs:
-    addresses:
-      - 10.20.1.200-10.20.1.250
-  gww:
-    addresses:
-      - 10.30.1.200-10.30.1.250
-  h89:
-    addresses:
-      - 10.10.1.200-10.10.1.250
 
 contour:
   contour:
