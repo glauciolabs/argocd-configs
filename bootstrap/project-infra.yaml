@@ -12,8 +12,6 @@ spec:
       server: https://kubernetes.default.svc
     - namespace: kube-system
       server: https://kubernetes.default.svc
-    - namespace: metallb-system
-      server: https://kubernetes.default.svc
     - namespace: projectcontour
       server: https://kubernetes.default.svc
     - namespace: cert-manager

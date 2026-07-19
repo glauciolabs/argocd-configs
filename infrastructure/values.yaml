@@ -3,25 +3,24 @@
 nfsCsi:
   kubeletDir: /var/lib/kubelet
 
-
 contour:
   contour:
     replicas: 2
   envoy:
     service:
-      type: NodePort
+      type: LoadBalancer
       # Set specific nodePorts for OCI NLB target integration
       nodePorts:
         http: 30080
         https: 30443
       externalIPs:
-        - 100.96.0.1
+        - 100.96.0.5
         - 100.96.0.14
-        - 100.96.0.16
-        - 100.96.0.6
-        - 100.96.0.15
-        - 100.96.0.17
         - 100.96.0.23
+        - 100.96.0.20
+        - 100.96.0.6
+        - 100.96.0.2
+        - 100.96.0.17
 
 certManager:
   installCRDs: true

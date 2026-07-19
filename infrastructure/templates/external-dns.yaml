@@ -13,8 +13,6 @@ spec:
     targetRevision: "1.21.1"
     helm:
       values: |
-        replicaCount: 2
-        replicas: 2
         provider: {{ .Values.externalDns.provider | quote }}
         domainFilters:
           {{- range .Values.externalDns.domainFilters }}

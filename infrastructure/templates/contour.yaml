@@ -7,11 +7,6 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: infrastructure
-  ignoreDifferences:
-    - group: apiextensions.k8s.io
-      kind: CustomResourceDefinition
-      jsonPointers:
-        - /spec/preserveUnknownFields
   source:
     chart: contour
     repoURL: "https://projectcontour.github.io/helm-charts/"
@@ -19,18 +14,18 @@ spec:
     helm:
       values: |
         contour:
-          replicaCount: {{ .Values.contour.contour.replicas }}
+          replicaCount: 2
         envoy:
-          replicaCount: {{ .Values.contour.contour.replicas }}
+          replicaCount: 2
           service:
-            type: {{ .Values.contour.envoy.service.type | quote }}
+            type: LoadBalancer
             externalIPs:
               {{- range .Values.contour.envoy.service.externalIPs }}
               - {{ . | quote }}
               {{- end }}
             nodePorts:
-              http: {{ .Values.contour.envoy.service.nodePorts.http }}
-              https: {{ .Values.contour.envoy.service.nodePorts.https }}
+              http: 30080
+              https: 30443
   destination:
     server: https://kubernetes.default.svc
     namespace: projectcontour
@@ -40,4 +35,9 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    jsonPointers:
+    - /status
 
