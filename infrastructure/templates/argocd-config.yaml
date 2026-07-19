@@ -10,7 +10,7 @@ metadata:
 spec:
   project: infrastructure
   source:
-    repoURL: "git@github.com:glauciolabs/argocd-configs.git"
+    repoURL: "https://github.com/glauciolabs/argocd-configs.git"
     targetRevision: HEAD
     path: infrastructure/argocd-config
   destination:
