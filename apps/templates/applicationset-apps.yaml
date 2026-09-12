@@ -10,7 +10,7 @@ spec:
           - app: drupal-app
             repo: https://github.com/glauciolabs/drupal-app.git
             env: production
-            path: app/production
+            path: k8s/production
           - app: htmly-app
             repo: https://github.com/glauciolabs/htmly-app.git
             env: production
