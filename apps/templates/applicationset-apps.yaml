@@ -9,10 +9,12 @@ spec:
         elements:
           - app: drupal-app
             repo: https://github.com/glauciolabs/drupal-app.git
+            revision: master
             env: production
             path: k8s/production
           - app: htmly-app
             repo: https://github.com/glauciolabs/htmly-app.git
+            revision: HEAD
             env: production
             path: app/production
   template:
@@ -22,7 +24,7 @@ spec:
       project: default
       source:
         repoURL: '{{repo}}'
-        targetRevision: HEAD
+        targetRevision: '{{revision}}'
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
