@@ -35,6 +35,8 @@ spec:
             - run
             - --token
             - $(CLOUDFLARE_TOKEN)
+            - --url
+            - http://contour-envoy.projectcontour.svc.cluster.local:80
             - --protocol=http2
             - --no-tls-verify
           env:
