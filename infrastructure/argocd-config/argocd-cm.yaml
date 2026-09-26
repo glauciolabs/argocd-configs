@@ -106,9 +106,9 @@ data:
       - UpdateRequest
   url: 'https://argocd.glauciolabs.work'
   oidc.config: |
-    name: EntraID
+    name: SSO
     issuer: https://login.microsoftonline.com/f31bc059-c671-420f-a611-32137f9ac1bd/v2.0
-    clientID: f7bd2200-f109-4e71-9231-161bbc03ce39
+    clientID: $oidc-azure-clientsecret:oidc.azure.clientID
     clientSecret: $oidc-azure-clientsecret:oidc.azure.clientSecret
     azure:
       useWorkloadIdentity: false
