@@ -18,7 +18,6 @@ metadata:
   namespace: argocd
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-    external-dns.alpha.kubernetes.io/target: "100.96.0.5,100.96.0.14,100.96.0.23,100.96.0.20,100.96.0.6,100.96.0.2,100.96.0.17"
 spec:
   virtualhost:
     fqdn: argocd.glauciolabs.work
