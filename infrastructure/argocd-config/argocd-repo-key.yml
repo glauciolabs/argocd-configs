@@ -6,24 +6,10 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repo-creds
 stringData:
-  url: git@github.com
-  sshPrivateKey: |
-    -----BEGIN OPENSSH PRIVATE KEY-----
-...
-    -----END OPENSSH PRIVATE KEY-----
-type: Opaque
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: global-azure-devops-ssh
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repo-creds
-stringData:
-  url: git@ssh.dev.azure.com
-  sshPrivateKey: |
-    -----BEGIN OPENSSH PRIVATE KEY-----
-...
-    -----END OPENSSH PRIVATE KEY-----
+  url: "https://github.com/glauciolabs"
+  githubAppID: ""
+  githubAppInstallationID: ""
+  githubAppPrivateKey: |
+    -----BEGIN RSA PRIVATE KEY-----
+    -----END RSA PRIVATE KEY-----
 type: Opaque
