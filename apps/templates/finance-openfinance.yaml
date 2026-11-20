@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: finance-openfinance
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  sourceRepos:
+    - https://github.com/glauciolabs/k8s-platform-templates.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: family-finance
+  namespaceResourceWhitelist:
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service
+    - group: traefik.io
+      kind: IngressRoute
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: finance-openfinance
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - environment: develop
+  syncPolicy:
+    applicationsSync: create-update
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      name: 'finance-openfinance-{{ "{{ .environment }}" }}'
+    spec:
+      project: finance-openfinance
+      source:
+        repoURL: https://github.com/glauciolabs/k8s-platform-templates.git
+        targetRevision: master
+        path: 'apps/finance-openfinance/{{ "{{ .environment }}" }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: family-finance
