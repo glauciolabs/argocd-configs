@@ -37,13 +37,13 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: 'finance-openfinance-{{ "{{ .environment }}" }}'
+      name: 'finance-openfinance-{{ .environment }}'
     spec:
       project: finance-openfinance
       source:
         repoURL: https://github.com/glauciolabs/k8s-platform-templates.git
         targetRevision: master
-        path: 'apps/finance-openfinance/{{ "{{ .environment }}" }}'
+        path: 'apps/finance-openfinance/{{ .environment }}'
       destination:
         server: https://kubernetes.default.svc
         namespace: family-finance
